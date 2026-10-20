@@ -96,12 +96,16 @@ p { margin: 0; }
 /* ---------- Hero ---------- */
 
 .hero__inner {
-  padding-block: clamp(2.5rem, 7vw, 5rem) clamp(1.75rem, 4vw, 2.75rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: end;
+  padding-block: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 3vw, 2.25rem);
 }
 
 .hero__title {
   max-width: 17ch;
-  font-size: clamp(2.3rem, 5.6vw, 4.6rem);
+  font-size: clamp(2.2rem, 4.4vw, 3.9rem);
   font-weight: 750;
   font-stretch: 112%;
   letter-spacing: -0.035em;
@@ -109,9 +113,8 @@ p { margin: 0; }
 }
 
 .hero__text {
-  max-width: 54ch;
-  margin-top: 1.5rem;
-  font-size: 1.15rem;
+  max-width: 44ch;
+  font-size: 1.08rem;
   color: var(--grafito);
 }
 
@@ -168,7 +171,7 @@ p { margin: 0; }
   stroke-width: 1;
 }
 
-#veta .nudo { stroke: rgba(0, 0, 0, 0.3); }
+#veta .suave { stroke: rgba(255, 255, 255, 0.1); }
 
 .vista-label {
   fill: #8FA096;
@@ -250,12 +253,17 @@ p { margin: 0; }
   border-bottom: 1px solid var(--linea);
 }
 
+/* float evita el espacio extra que los navegadores agregan bajo el legend */
 .opcion legend {
+  float: left;
+  width: 100%;
   padding: 0;
   margin-bottom: 0.85rem;
   font-weight: 650;
   font-size: 1rem;
 }
+
+.opcion legend + * { clear: both; }
 
 /* Inputs ocultos pero accesibles */
 .madera input,
@@ -625,11 +633,22 @@ p { margin: 0; }
 /* ---------- Responsive ---------- */
 
 @media (max-width: 960px) {
+  .hero__inner { grid-template-columns: 1fr; }
+
   .config__grid { grid-template-columns: 1fr; }
 
+  /* En pantallas chicas el plano queda fijo arriba mientras elegís opciones */
   .sheet {
-    position: relative;
-    top: 0;
+    top: 64px;
+    z-index: 5;
+    box-shadow: 0 10px 24px -12px rgba(29, 42, 36, 0.6);
+  }
+
+  .sheet__svg { max-height: 36vh; margin-inline: auto; }
+
+  .sheet__footer {
+    padding-block: 0.6rem 0.75rem;
+    font-size: 0.85rem;
   }
 
   .pasos {
