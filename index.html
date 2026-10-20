@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veta — Mesas a medida</title>
+  <meta name="description" content="Diseñá tu mesa de madera maciza: elegí madera, terminación, medidas y patas, y mirá el plano y el precio al instante.">
+  <meta name="theme-color" content="#1D2A24">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#" class="logo" aria-label="Veta, inicio">veta</a>
+      <nav class="nav" aria-label="Principal">
+        <a href="#configurador">Configurador</a>
+        <a href="#proceso">Cómo trabajamos</a>
+        <a href="#preguntas">Preguntas</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <h1 class="hero__title">Diseñá tu mesa.<br>El precio lo ves mientras la armás.</h1>
+        <p class="hero__text">Madera maciza, hecha a mano en el taller. Elegí medidas, madera y patas; cuando te guste cómo quedó, nos mandás el pedido por WhatsApp.</p>
+      </div>
+    </section>
+
+    <!-- CONFIGURADOR -->
+    <section class="config" id="configurador" aria-label="Configurador de mesa">
+      <div class="container config__grid">
+
+        <!-- Plano en vivo -->
+        <div class="sheet">
+          <svg id="plano" class="sheet__svg" viewBox="0 0 760 600" role="img" aria-labelledby="plano-desc">
+            <desc id="plano-desc">Plano de la mesa en vista frontal y superior, con sus medidas.</desc>
+            <defs>
+              <!-- Veta de la madera -->
+              <pattern id="veta" patternUnits="userSpaceOnUse" width="240" height="22">
+                <path d="M0 4 C60 1 120 7 240 4" />
+                <path d="M0 9 C80 12 140 6 240 10" />
+                <path d="M0 15 C50 13 170 18 240 15" />
+                <path d="M0 19 C90 21 150 17 240 20" />
+                <path d="M30 11 C45 7 70 7 85 11 C70 14 45 14 30 11" class="nudo" />
+              </pattern>
+              <!-- Brillo de la terminación -->
+              <linearGradient id="brillo" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#fff" stop-opacity=".55" />
+                <stop offset=".35" stop-color="#fff" stop-opacity=".08" />
+                <stop offset=".6" stop-color="#fff" stop-opacity=".25" />
+                <stop offset="1" stop-color="#fff" stop-opacity="0" />
+              </linearGradient>
+              <!-- Flechas de las cotas -->
+              <marker id="flecha" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 1 L9 5 L0 9 z" />
+              </marker>
+            </defs>
+
+            <!-- Vista frontal -->
+            <text class="vista-label" x="24" y="34">Vista frontal</text>
+            <line class="piso" x1="24" y1="225" x2="736" y2="225" />
+            <g id="frontal"></g>
+            <g id="cotas-frontal" class="cotas"></g>
+
+            <!-- Vista superior -->
+            <text class="vista-label" x="24" y="290">Vista superior</text>
+            <g id="sillas" class="sillas"></g>
+            <g id="superior"></g>
+            <g id="cotas-superior" class="cotas"></g>
+          </svg>
+
+          <div class="sheet__footer">
+            <p id="resumen-texto" class="sheet__resumen">Petiribí, terminación natural, patas rectas</p>
+            <p id="personas" class="sheet__personas">Entran 6 personas</p>
+          </div>
+        </div>
+
+        <!-- Opciones -->
+        <form class="panel" id="form-config" novalidate>
+          <h2 class="panel__title">Tu mesa</h2>
+
+          <fieldset class="opcion">
+            <legend>Madera</legend>
+            <div class="maderas">
+              <label class="madera">
+                <input type="radio" name="madera" value="pino">
+                <span class="madera__muestra" style="--c:#DDB984"></span>
+                <span class="madera__nombre">Pino</span>
+                <span class="madera__nota">Clara, liviana</span>
+              </label>
+              <label class="madera">
+                <input type="radio" name="madera" value="petiribi" checked>
+                <span class="madera__muestra" style="--c:#A86F45"></span>
+                <span class="madera__nombre">Petiribí</span>
+                <span class="madera__nota">Cálida, estable</span>
+              </label>
+              <label class="madera">
+                <input type="radio" name="madera" value="roble">
+                <span class="madera__muestra" style="--c:#C39762"></span>
+                <span class="madera__nombre">Roble</span>
+                <span class="madera__nota">Veta marcada</span>
+              </label>
+              <label class="madera">
+                <input type="radio" name="madera" value="nogal">
+                <span class="madera__muestra" style="--c:#5E3B28"></span>
+                <span class="madera__nombre">Nogal</span>
+                <span class="madera__nota">Oscura, noble</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="opcion">
+            <legend>Medidas</legend>
+            <label class="cinta">
+              <span class="cinta__label">Largo <output id="largo-valor" for="largo">180</output> cm</span>
+              <input type="range" id="largo" name="largo" min="120" max="240" step="10" value="180">
+            </label>
+            <label class="cinta">
+              <span class="cinta__label">Ancho <output id="ancho-valor" for="ancho">90</output> cm</span>
+              <input type="range" id="ancho" name="ancho" min="70" max="110" step="5" value="90">
+            </label>
+          </fieldset>
+
+          <fieldset class="opcion">
+            <legend>Terminación</legend>
+            <div class="segmento">
+              <label><input type="radio" name="terminacion" value="natural" checked><span>Natural</span></label>
+              <label><input type="radio" name="terminacion" value="satinado"><span>Satinado</span></label>
+              <label><input type="radio" name="terminacion" value="laqueado"><span>Laqueado</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="opcion">
+            <legend>Patas</legend>
+            <div class="segmento segmento--iconos">
+              <label>
+                <input type="radio" name="patas" value="rectas" checked>
+                <span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="3"/><rect x="5" y="6" width="3" height="15"/><rect x="16" y="6" width="3" height="15"/></svg>
+                  Rectas
+                </span>
+              </label>
+              <label>
+                <input type="radio" name="patas" value="conicas">
+                <span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="3"/><path d="M4.5 6h4l-1.5 15h-1z"/><path d="M15.5 6h4l-1.5 15h-1z"/></svg>
+                  Cónicas
+                </span>
+              </label>
+              <label>
+                <input type="radio" name="patas" value="hierro">
+                <span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="3"/><path d="M5 6h2v13h-2zM17 6h2v13h-2zM4 19h4v2h-4zM16 19h4v2h-4z"/></svg>
+                  Hierro
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="precio">
+            <div class="precio__fila">
+              <p class="precio__label">Precio estimado</p>
+              <p class="precio__valor"><span>USD</span> <strong id="precio">730</strong></p>
+            </div>
+            <details class="precio__detalle">
+              <summary>Ver cómo se calcula</summary>
+              <dl id="detalle"></dl>
+            </details>
+            <p class="precio__entrega" id="entrega">Entrega en 4 a 5 semanas</p>
+            <a href="#" class="btn" id="btn-whatsapp" target="_blank" rel="noopener">Pedir esta mesa por WhatsApp</a>
+          </div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- CÓMO TRABAJAMOS -->
+    <section class="proceso" id="proceso">
+      <div class="container">
+        <h2 class="seccion__title">Cómo trabajamos</h2>
+        <ol class="pasos">
+          <li class="paso">
+            <h3>Diseñás</h3>
+            <p>Armás la mesa acá y nos mandás el pedido con todas las medidas.</p>
+          </li>
+          <li class="paso">
+            <h3>Confirmamos</h3>
+            <p>Te escribimos para revisar detalles, el espacio donde va y la forma de pago.</p>
+          </li>
+          <li class="paso">
+            <h3>Fabricamos</h3>
+            <p>Cortamos, ensamblamos y terminamos la mesa a mano. Te mandamos fotos del avance.</p>
+          </li>
+          <li class="paso">
+            <h3>Entregamos</h3>
+            <p>La llevamos armada y lista para usar, con instrucciones para cuidarla.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- PREGUNTAS -->
+    <section class="preguntas" id="preguntas">
+      <div class="container preguntas__inner">
+        <h2 class="seccion__title">Preguntas</h2>
+        <div class="faq">
+          <details>
+            <summary>¿El precio es final?</summary>
+            <p>Es una estimación muy cercana. Lo confirmamos cuando revisamos el pedido con vos, antes de que pagues nada.</p>
+          </details>
+          <details>
+            <summary>¿Puedo pedir una medida que no está en el configurador?</summary>
+            <p>Sí. Armá la mesa más parecida y en el mensaje contanos la medida exacta que necesitás.</p>
+          </details>
+          <details>
+            <summary>¿Qué diferencia hay entre las terminaciones?</summary>
+            <p>La natural deja la madera al tacto, con aceite. El satinado suma una capa protectora con brillo suave. El laqueado es la más resistente a manchas y tiene brillo marcado.</p>
+          </details>
+          <details>
+            <summary>¿Hacen envíos?</summary>
+            <p>Sí, coordinamos el envío según tu ciudad. El costo se suma al confirmar el pedido.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="logo">veta</span>
+      <p>Veta es una marca ficticia. Proyecto demo de NorteDigitalDev.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
